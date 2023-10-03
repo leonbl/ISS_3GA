@@ -1,5 +1,6 @@
 #include <Arduino.h>
-int staroStanje;
+int staroStanjeA;
+int staroStanjeB;
 
 void setup() {
   pinMode(A1, INPUT);
@@ -9,11 +10,16 @@ void setup() {
 }
 
 void loop() {
-  int stanje = digitalRead(A1);
-  if(staroStanje == 1 && stanje == 0){
-    digitalWrite(10, !digitalRead(10));
+  int stanjeA = digitalRead(A1);
+  if(staroStanjeA == 1 && stanjeA == 0){
+    digitalWrite(10, LOW);
+  }
+  int stanjeB = digitalRead(A2);
+  if(staroStanjeB == 1 && stanjeB == 0){
+    digitalWrite(10, HIGH);
   }
   delay(100);
-  staroStanje = stanje;
+  staroStanjeA = stanjeA;
+  staroStanjeB = stanjeB;
 }
 
