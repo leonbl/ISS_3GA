@@ -8,7 +8,7 @@ void prikaziBite();
 void vpisiStevilo(int stevilo);
 void nastaviMesto(int dispNum);
 
-int v1=10;
+int v1=1;
 
 void setup() {
   pinMode(SDI, OUTPUT);
@@ -19,10 +19,18 @@ void setup() {
 
 void loop() {
   vpisiStevilo(0x03);
+  nastaviMesto(1);
+  prikaziBite();
+    vpisiStevilo(0x03);
   nastaviMesto(2);
   prikaziBite();
-  Serial.println();
-  delay(1000);
+    vpisiStevilo(0x03);
+  nastaviMesto(4);
+  prikaziBite();
+    vpisiStevilo(0x03);
+  nastaviMesto(8);
+  prikaziBite();
+
 }
 
 void vpisiBit(){
