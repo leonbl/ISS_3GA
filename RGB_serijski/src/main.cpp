@@ -4,6 +4,7 @@
 #define green 11
 int gCnt;
 int predznak = 1;
+int r,g,b;
 void setup() {
   pinMode(red, OUTPUT);
   pinMode(blue, OUTPUT);
@@ -12,33 +13,20 @@ void setup() {
 }
 
 void loop() {
-  gCnt=124;
-  for(int n=0;n<256;n++){
-    analogWrite(blue,n);
-    analogWrite(red,abs(n-255));
-    analogWrite(green,gCnt);
-    gCnt = gCnt + 1 * predznak;
-    if(gCnt==255) predznak = -1;
-    Serial.print(n);
-    Serial.print(" ");
-    Serial.print(abs(n-255));
-    Serial.print(" ");
-    Serial.println(gCnt);
-    delay(10);
+  if(Serial.available() > 7){
+    if(Serial.read() == '#'){
+      delay(100);
+      r = Serial.parseInt();
+      g = Serial.parseInt();
+      b = Serial.parseInt();
+      analogWrite(red,r);
+      analogWrite(green,g);
+      analogWrite(blue,b);
+      Serial.print(r);
+      Serial.print(" ");
+      Serial.print(g);
+      Serial.print(" ");
+      Serial.print(b);
+    }
   }
-  gCnt=125;
-  for(int n=255;n>=0;n--){
-    analogWrite(blue,n);
-    analogWrite(red,abs(n-255));
-    analogWrite(green,gCnt);
-    gCnt = gCnt + 1 * predznak;
-    if(gCnt==0) predznak = 1;
-    Serial.print(n);
-    Serial.print(" ");
-    Serial.print(abs(n-255));
-    Serial.print(" ");
-    Serial.println(gCnt);
-    delay(10);
-  }
-  
 }
